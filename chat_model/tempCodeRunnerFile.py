@@ -16,9 +16,9 @@ model = init_chat_model(
     model_provider="groq"
 )
 
-response = model.invoke("What is cricket?")
+# response = model.invoke("What is cricket?")
 response = model.invoke("recommend some name for my startup company")
 
 
 print(response.content)
-# print(response) 
+# print(response)
