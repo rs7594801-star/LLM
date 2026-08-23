@@ -12,9 +12,8 @@ llm = HuggingFacePipeline.from_model_id(
 
 chat_model = ChatHuggingFace(llm = llm)
 
-chat_model.invoke("what is data science?")
 
-result = chat_model.invoke("my name is rachit ")
-result = chat_model.invoke("from today onwards your name is TAASHU ")
+result = chat_model.invoke("explain data science ")
+# result = chat_model.invoke("from today onwards your name is TAASHU ")
 
 print(result.content)
