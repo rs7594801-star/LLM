@@ -1,24 +1,9 @@
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv 
+laod_dotenv()
 
-from langchain.chat_models import init_chat_model
- 
+from langchain.chat_models import ChatMistralAI
 
+model = ChatMistralAI(model = "mistral-small-2506" , temperature = 0.9)
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
-# from langchain_groq import ChatGroq
-
-model = init_chat_model(
-    "openai/gpt-oss-20b" ,
-    model_provider="groq"
-)
-
-# response = model.invoke("What is cricket?")
-response = model.invoke("recommend some name for my startup company")
-
-
+response = model.invoke("write a poem ")
 print(response.content)
-# print(response)
