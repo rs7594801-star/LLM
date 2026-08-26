@@ -11,3 +11,38 @@ tiktoken
 fastapi
 uvicorn
 requests
+
+# LangChain core
+langchain
+langchain-core
+langchain-community
+langgraph
+
+# LLM providers from the old project
+langchain-openai
+langchain-groq
+langchain-mistralai
+
+# Environment variables
+python-dotenv
+
+# RAG / Vector stores
+chromadb
+faiss-cpu
+
+# Document loading and text splitting
+pypdf
+docx2txt
+unstructured
+beautifulsoup4
+
+# Embeddings
+sentence-transformers
+
+# Tokenization
+tiktoken
+
+# API / web app
+fastapi
+uvicorn
+requests

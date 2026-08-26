@@ -1,0 +1,108 @@
+Correlation vs Covariance in Statistics
+
+1. Introduction
+Correlation and covariance are statistical measures used to understand the relationship between two variables.
+
+2. Covariance
+
+Covariance measures the direction of the relationship between two variables.
+
+Formula:
+
+Cov(X, Y) = Σ[(Xi - X̄)(Yi - Ȳ)] / (n - 1)
+
+Where:
+- Xi = individual value of X
+- Yi = individual value of Y
+- X̄ = mean of X
+- Ȳ = mean of Y
+- n = number of observations
+
+Interpretation:
+- Positive covariance: X and Y tend to increase together.
+- Negative covariance: when X increases, Y tends to decrease.
+- Covariance close to zero: there may be little or no linear relationship.
+
+Important limitation:
+The magnitude of covariance depends on the units of the variables, so it is difficult to compare covariance values across different datasets.
+
+3. Correlation
+
+Correlation measures both the direction and strength of the linear relationship between two variables.
+
+The Pearson correlation coefficient is:
+
+r = Cov(X, Y) / (σX × σY)
+
+Where:
+- Cov(X, Y) = covariance between X and Y
+- σX = standard deviation of X
+- σY = standard deviation of Y
+
+The correlation coefficient ranges from -1 to +1.
+
+Interpretation:
+- r = +1: perfect positive linear relationship.
+- r = -1: perfect negative linear relationship.
+- r = 0: no linear relationship.
+- r close to +1: strong positive linear relationship.
+- r close to -1: strong negative linear relationship.
+- r close to 0: weak linear relationship.
+
+4. Main Difference
+
+Covariance:
+- Shows the direction of the relationship.
+- Has units based on the units of X and Y.
+- Has no fixed range.
+- Its magnitude is difficult to interpret directly.
+
+Correlation:
+- Shows both direction and strength.
+- Is unitless.
+- Always lies between -1 and +1.
+- Is easier to interpret and compare.
+
+5. Example
+
+Suppose we have two variables:
+
+X = Hours studied
+Y = Exam score
+
+If students who study more hours generally score higher, the covariance will tend to be positive and the correlation will also be positive.
+
+If the correlation is 0.90, it indicates a strong positive linear relationship between hours studied and exam score.
+
+6. Relationship Between Them
+
+Correlation is essentially a standardized form of covariance.
+
+Correlation = Covariance / (Standard deviation of X × Standard deviation of Y)
+
+Therefore, correlation removes the effect of the units and scales the result to the range -1 to +1.
+
+7. Covariance vs Correlation — Quick Comparison
+
+Covariance:
+- Direction: Yes
+- Strength: Not directly standardized
+- Range: No fixed range
+- Units: Has units
+- Easy to compare: No
+
+Correlation:
+- Direction: Yes
+- Strength: Yes
+- Range: -1 to +1
+- Units: Unitless
+- Easy to compare: Yes
+
+8. Key Point to Remember
+
+Covariance tells you whether two variables move together or in opposite directions.
+
+Correlation tells you how strongly and in which direction two variables are linearly related.
+
+Note:
+Correlation does not necessarily imply causation. A strong correlation between two variables does not prove that one variable causes the other.
