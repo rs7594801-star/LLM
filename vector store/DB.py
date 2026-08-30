@@ -24,13 +24,20 @@ vector_store = Chroma.from_documents(
     persist_directory= "chroma-db"
 
 )
+result = vector_store.similarity_search("what is data analystics ? "  , k=2)
 
+# this is retrivals code 
+# results = vector_store.similarity_search(
+#     "What is Python used for?"
+# )
 
-results = vector_store.similarity_search(
-    "What is Python used for?"
-)
-
-for result in results:
+for result in result:
     print(result.page_content)
     print(result.metadata)
     
+retriver = vector_store.as_retriever()
+
+docs = retriver.invoke("explain deep learning", k=2)
+
+for d in docs:
+    print(d.page_content)
