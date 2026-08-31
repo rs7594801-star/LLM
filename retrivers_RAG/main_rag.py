@@ -3,14 +3,14 @@ from langchain_community.vectorstores import Chroma
 # from langchain_openai import OpenAIEmbeddings
 from langchain_mistralai import ChatMistralAI
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_mistralai import MistralAIEmbeddings
-# from langchain_huggingface import HuggingFaceEmbeddings
+# from langchain_mistralai import MistralAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 load_dotenv()
 
-from langchain_mistralai import MistralAIEmbeddings
+# from langchain_mistralai import MistralAIEmbeddings
 
-embedding_model = MistralAIEmbeddings(
-    model="mistral-embed"
+embedding_model = HuggingFaceEmbeddings(
+    model="sentence-transformers/all-MiniLM-L6-v2"
 )
 vectorstore = Chroma(
     persist_directory ="chroma_db_2",
@@ -52,9 +52,9 @@ prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-print("rag system created ")
+print("Rag system created ")
 
-print("press exit to exit")
+print("Press exit to exit")
 
 while True:
     query = input("you :")
@@ -62,6 +62,11 @@ while True:
         print("Rag system Closed .") 
         break 
     docs = retriever.invoke(query)
+    print("\n--- RETRIEVED DOCUMENTS ---")
+
+    for doc in docs:
+        print(doc.page_content)
+        print("--------------------------")
 
     context = "\n\n".join(
         [doc.page_content for doc in docs]
