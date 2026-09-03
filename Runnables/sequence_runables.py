@@ -30,3 +30,9 @@ response = model.invoke(for_prompt)
 final_output = parser.parse(response.content)
 
 print(final_output)
+
+
+chain = prompt| model | parser
+
+result = chain.invoke("machine learning ")
+print(result)
