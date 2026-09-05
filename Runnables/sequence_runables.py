@@ -1,7 +1,9 @@
+import time
 from dotenv import load_dotenv
 load_dotenv()
 #mistral api k liye 
-from langchain_mistralai import ChatMistralAI 
+# from langchain_mistralai import ChatMistralAI 
+from langchain_groq import ChatGroq
 # ye prmpt k liye hai 
 from langchain_core.prompts import ChatPromptTemplate 
 
@@ -14,9 +16,13 @@ prompt = ChatPromptTemplate.from_template(
 )
 
 #model
+from langchain_groq import ChatGroq
 
-model = ChatMistralAI(model = "mistral-small-2506")
-
+model = ChatGroq(
+    model="openai/gpt-oss-20b",
+    temperature=0.7,
+    max_retries=5
+)
 #output parser
 parser = StrOutputParser()
 
@@ -31,6 +37,7 @@ final_output = parser.parse(response.content)
 
 print(final_output)
 
+time.sleep(3)
 
 chain = prompt| model | parser
 

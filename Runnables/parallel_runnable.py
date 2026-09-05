@@ -7,8 +7,9 @@ from langchain_core.prompts import ChatPromptTemplate
 
 #this is for short outputs 
 from langchain_core.output_parsers import StrOutputParser
+from langchain_groq import ChatGroq
 
-from langchain_core.runnables import RunnableParallel
+from langchain_core.runnables import RunnableParallel , RunnableLambda
 
 #prompt tempelate
 short_prompt = ChatPromptTemplate.from_template(
@@ -18,9 +19,12 @@ detailed_prompt = ChatPromptTemplate.from_template(
     "explain this {topic} in detail "
 )
 
-model = ChatMistralAI(
-    model="mistral-small-2506",
-    temperature=0.7
+# from langchain_groq import ChatGroq
+
+model = ChatGroq(
+    model="openai/gpt-oss-20b",
+    temperature=0.7,
+    max_retries=5
 )
 parser = StrOutputParser()
 
@@ -28,14 +32,23 @@ topic = "machine learning"
 
 #parallel runables 
 #we have to place this in list 
-chain = RunnableParallel({"short" :short_prompt | model | parser ,
-"detailed" : detailed_prompt | model | parser }) 
 
 
-result = chain.invoke({"short" : {"topic" : "machine learning "} ,
+chain = RunnableParallel({
+    "short" :RunnableLambda(lambda x : x['short'])  | short_prompt | model | parser
+    ,
+    "detailed" :RunnableLambda (lambda x : x['detailed']) |detailed_prompt | model | parser
+}) 
+
+
+result = chain.invoke({"short" : {"topic" : "machine learning "} 
+                       ,
                        "detailed" : {"topic" :"deep learnig "}
                        })
 
 print(result)
-print(['short'])
-print(['detialed'])
+
+print("SHORT")
+print(result['short'])
+print("DETAILED")
+print(result['detailed'])
