@@ -3,7 +3,7 @@ load_dotenv()
 from langchain_groq import ChatGroq 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.prompts import ChatPromptTemplate
-# from langchain_core.runnables import RunnableParallel , RunnablePassthrough
+from langchain_core.runnables import RunnableParallel , RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
 model = model = ChatGroq(
@@ -25,8 +25,24 @@ explain_prompt = ChatPromptTemplate.from_messages([
 
 ])
 
-seq = code_prompt | model | parser | explain_prompt | model | parser
+seq = code_prompt | model | parser 
 
-result = seq.invoke({"topic" : "wrote a code for palindrome in python "})
+# result = seq.invoke({"topic" : "wrote a code for palindrome in python "})
 
-print("This is the whole resut portion",result)
+# print("This is the whole resut portion",result)
+
+seq_2 = RunnableParallel(
+    {"code" :  RunnablePassthrough(),
+     "explanation" : explain_prompt | model | parser 
+     }
+)
+
+chain = seq | seq_2
+
+result = chain.invoke({"topic" : "please write a code of palindrome in python "})
+
+
+print(result['code'])
+
+print("this is the explamation-------------------")
+print(result['explanation'])
