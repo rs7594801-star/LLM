@@ -7,7 +7,8 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_mistralai import ChatMistralAI
+# from langchain_mistralai import ChatMistralAI
+from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage
 
@@ -91,7 +92,12 @@ with st.sidebar:
         st.rerun()
 
 # Set up LLM and Prompt Template with Chat History support
-llm = ChatMistralAI(model="mistral-small-latest", temperature=0.2)
+# llm = ChatMistralAI(model="mistral-small-latest", temperature=0.2)
+llm = model = ChatGroq(
+    model="openai/gpt-oss-20b",
+    temperature=0.7,
+    max_retries=5
+)
 
 prompt = ChatPromptTemplate.from_messages([
     ("system", 
